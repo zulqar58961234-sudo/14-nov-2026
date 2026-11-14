@@ -1,9 +1,14 @@
 "use client"
 
 import { useState } from "react"
+import { ChangeData } from "../operations/update"
+import ParticlesBackground from "../components/ParticlesBackground"
+import DashboardNavbar from "../components/dashnav"
+import Link from "next/link"
+import Footer from "../components/footer"
 
 
-export default function SingleData({data}){
+export default function EditDashboard({data}){
   const [name,Setname] = useState("")
   const [course,Setcourse] = useState("")
   const [age,Setage] = useState("")
@@ -29,6 +34,15 @@ export default function SingleData({data}){
         boby: formData,
       }
     )
+     const result = await response.json();
+
+      const res = await ChangeData({
+        id: data.id,
+        name,
+        age,
+        course,
+        image: result.secure_url,
+      });
     Setmessage(res.error||res.success)
     } catch (error) {
       console.error("Something Went Wrong" , error);
@@ -36,10 +50,27 @@ export default function SingleData({data}){
     }
   }
     return(
-        <section>
-            <div className="max-w-5xl bg-gray-800 rounded-3xl overflow-hidden shadow-xl flex flex-col md:flex-row w-full">
-       
+        <section className="h-full  w-full overflow-x-hidden scroll-smooth ">
+          <title>Update Student Info - Skill Verge</title>
+ <div>
+            <DashboardNavbar/>
+          <div className="relative w-full h-[450px] bg-black flex items-center justify-center text-center overflow-hidden">     
+           <div className="absolute inset-0 bg-cover bg-center h-[450px] clip-angled bg-[url('/dash.jpg')]"></div>
+            <div className="absolute inset-0 bg-black/70"></div>
+             <ParticlesBackground/>
+              <div className="relative z-10 text-white">
+               <h1 className="text-5xl font-bold">* Update Your Student Info *</h1>
+                <p className="mt-2 text-sm"><Link href="/home">Home</Link> / Dashboard</p>
+                 </div>
+                  </div>
+                   </div>
 
+            <div className="max-w-5xl flex ml-40 mt-50 bg-gray-800 rounded-3xl overflow-hidden shadow-xl flex flex-col md:flex-row w-full">
+       
+<div
+          className="hidden md:block md:w-1/2 bg-cover bg-center  bg-[url('/up.jpg')]"
+          
+        ></div>
         {/* Right Form Panel */}
         <div className="w-full md:w-1/2 bg-white p-10 flex flex-col justify-center">
           <h2 className="text-red-500 text-3xl font-bold mb-2">
@@ -113,6 +144,9 @@ export default function SingleData({data}){
             {message}
           </form>
         </div>
+      </div>
+      <div className="pt-10">
+        <Footer/>
       </div>
         </section>
     )

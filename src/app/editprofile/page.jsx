@@ -6,11 +6,26 @@ import NavBar from "../components/Navbar";
 import { DataUpdate } from "../actions/update";
 import ParticlesBackground from "../components/ParticlesBackground";
 import Footer from "../components/footer";
-import { StuUpdate } from "../operations/update";
-
+import { useRouter } from "next/navigation";
 
 export default function EditProfilePage({data}) {
+ const [name, Setname] = useState("");
+  const [email, Setemail] = useState("");
+  const [password, Setpassword] = useState("");
+  const router = useRouter()
+  async function HandleSubmit(e) {
+    e.preventDefault();
 
+      const res = await DataUpdate({
+        id: data.id,
+        name,
+        email,
+        password,
+
+        
+      });
+
+  }
   return (
    <section className="h-full w-full overflow-x-hidden scroll-smooth ">
     <title>Update Account Info - Skill Verge</title>
@@ -123,13 +138,6 @@ export default function EditProfilePage({data}) {
       />
     </div>
   </div>
-
-  {/* MESSAGE */}
-  {message && (
-    <p className="rounded-xl bg-red-50 px-4 py-2 text-center text-sm font-medium text-red-600">
-      {message}
-    </p>
-  )}
 
   {/* SAVE BUTTON */}
   <button

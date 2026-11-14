@@ -7,18 +7,13 @@ export async function EnrollJs({name, course, age, image }) {
   if (!session) {
     return { error: "unauthorized" };
   }
-
-  // 🔒 STRICT IMAGE VALIDATION
-  if (!image || typeof image !== "string") {
-    return { error: "❌ Valid image is required to enroll" };
-  }
-
   try {
     await prisma.studentinfo.create({
       data: {
+      userId: session.id,
         name,
         course,
-        image, // ✅ guaranteed string URL
+         image: image || "default.png",
         age: Number(age),
       },
     });

@@ -15,7 +15,7 @@ export default async function SignUp({name , email , password}){
                 password
             }
         });
-      redirect("/login")
+        return{success:"Data Saved Successfully"}
     }
     catch(error){
         console.error("something went wrong",error)
@@ -23,7 +23,3 @@ export default async function SignUp({name , email , password}){
     }
    
 }
-
- export async function ReadData(){
-        await prisma.user.findMany()
-    }

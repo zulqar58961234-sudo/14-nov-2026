@@ -5,10 +5,10 @@ import DashboardNavbar from "../components/dashnav";
 import ParticlesBackground from "../components/ParticlesBackground";
 import Footer from "../components/footer";
 import EndCourse from "../components/deletecourse";
+import ReadInfo from "../operations/read";
 
 export default async function Dashboard() {
 const data = await ReadData();
-
   return (
     <section className="h-full  w-full overflow-x-hidden scroll-smooth ">
       <title>Student DashBoard - Skill Verge</title>
@@ -71,7 +71,7 @@ The dashboard also helps you stay motivated by showing your learning milestones,
                   {/* ===== Course Image ===== */}
                   <div className="relative h-48 w-full">
                     <Image
-                      src="/video.webp"
+                      src="/courses.avif"
                       alt={item.course}
                       fill
                       className="object-cover"
@@ -115,7 +115,7 @@ The dashboard also helps you stay motivated by showing your learning milestones,
                       </Link>
 
                       <Link
-                        href={`/editdashboard/${item.id}`}
+                        href={`/infoupdate/${item.id}`}
                         className="flex-1 rounded-xl bg-red-600 py-2.5 text-center text-sm font-semibold text-white hover:bg-red-700"
                       >
                         Edit Info
