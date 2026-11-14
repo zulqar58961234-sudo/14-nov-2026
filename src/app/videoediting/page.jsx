@@ -78,7 +78,7 @@ export default function VideoEditingCourse() {
             CapCut to professional tools like Adobe Premiere Pro. You'll
             learn editing workflow, trimming, transitions, audio editing,
             and how to build quality videos for YouTube, social media,
-            and more.:contentReference[oaicite:1]{index=1}
+            and more
           </p>
         </div>
 
